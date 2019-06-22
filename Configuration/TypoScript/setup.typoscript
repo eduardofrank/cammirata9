@@ -8,8 +8,13 @@
 #### PAGE ####
 ##############
 page {
+    includeCSSLibs {
+        googlewebfont = https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i
+    }
+
     includeCSS {
         theme = EXT:cammirata9/Resources/Public/Scss/Theme/theme.scss
+        cammirata-theme = EXT:cammirata9/Resources/Public/Css/cammirata.css
     }
 
     includeJSLibs {
@@ -26,5 +31,114 @@ page {
 
     includeJSFooter {
         cammirata9_scripts = EXT:cammirata9/Resources/Public/JavaScript/Dist/scripts.js
+        smallmenu = EXT:cammirata9/Resources/Public/JavaScript/Dist/smallmenu.js
+    }
+}
+
+
+#############################################
+## From here onward added by Eduardo Frank ##
+#############################################
+# Error reports in plain text instead of oops
+config.admPanel = 0
+config.contentObjectExceptionHandler = 0
+
+
+#### FORM CONFIGURATION ###
+plugin.tx_form.settings.yamlConfigurations.100 = EXT:cammirata9/Configuration/Form/FormSetup.yaml
+module.tx_form.settings.yamlConfigurations.100 = EXT:cammirata9/Configuration/Form/FormSetup.yaml
+
+
+#### SMALL LOGO IN HEADER ###
+lib.sm-logo = TEXT
+lib.sm-logo.value = typo3conf/ext/cammirata9/Resources/Public/Images/logo.svg
+
+#### GRID ELEMENTS ####
+lib.gridelements.defaultGridSetup {
+    columns {
+        default {
+            renderObj = COA
+            renderObj {
+                20 =< tt_content
+            }
+        }
+    }
+}
+plugin.tx_gridelements_pi1 >
+tt_content.gridelements_pi1 >
+tt_content.gridelements_pi1 = FLUIDTEMPLATE
+tt_content.gridelements_pi1 {
+
+    templateName = 3col
+    templateRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Templates/ContentElements/
+        10 = EXT:cammirata9/Resources/Private/Templates/ContentElements/
+    }
+    partialRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Partials/ContentElements/
+        10 = EXT:cammirata9/Resources/Private/Partials/ContentElements/
+    }
+    layoutRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Layouts/ContentElements/
+        10 = EXT:cammirata9/Resources/Private/Layouts/ContentElements/
+    }
+
+    variables {
+        content = USER
+        content {
+            userFunc = GridElementsTeam\Gridelements\Plugin\Gridelements->main
+            setup {
+                default < lib.gridelements.defaultGridSetup
+            }
+        }
+    }
+}
+tt_content.gridelements_view < tt_content.gridelements_pi1
+
+tt_content.gridelements_pi1.variables.content.setup {
+    1 < lib.gridelements.defaultGridSetup
+    1 {
+        columns {
+            10 < .default
+            10.wrap = <div class="col-md-4">|</div>
+            20 < .default
+            20.wrap = <div class="col-md-4">|</div>
+            30 < .default
+            30.wrap = <div class="col-md-4">|</div>
+        }
+    }
+}
+
+
+
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+	dataProcessing {
+                30 {
+                special = rootline
+                special.range = 1|-1
+                includeNotInMenu = 1
+                as = breadcrumb
+                if {
+                    value = {$page.theme.breadcrumb.enableLevel}
+                    value {
+                        insertData = 1
+                        prioriCalc = 1
+                        stdWrap.wrap = |-1
+                    }
+                    isGreaterThan {
+                        data = level
+                    }
+                }
+                dataProcessing {
+                    10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                    10 {
+                        references.fieldName = nav_icon
+                        as = icon
+                    }
+                }
+            }
+        }
     }
 }

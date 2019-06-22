@@ -11,10 +11,10 @@ page {
     logo {
         file = EXT:cammirata9/Resources/Public/Images/logo.svg
         fileInverted = EXT:cammirata9/Resources/Public/Images/logo-inverted.svg
-        height = 52
-        width = 192
-        alt = cammirata9
-        linktitle = cammirata9
+        height = 126
+        width = 250
+        alt = Claudia Ammirata
+        linktitle = Claudia Ammirata
     }
     favicon {
         file = EXT:cammirata9/Resources/Public/Icons/favicon.ico
@@ -55,6 +55,23 @@ plugin.bootstrap_package_contentelements {
 ### BOOTSTRAP SCSS CONSTANTS ###
 ################################
 plugin.bootstrap_package.settings.scss {
-    primary = #eb3e4a
-    secondary = #013859
+    primary = #d2232a
+    secondary = #f7f2f6
+}
+
+
+#############################################
+## From here onward added by Eduardo Frank ##
+#############################################
+config.admPanel = 0
+page.theme.language.enable = 0
+page.theme.copyright.text = © Claudia Ammirata
+config.headerComment = Based on the TYPO3 Bootstrap Package by Benjamin Kott - http://www.bk2k.info. Integrator: Eduardo Frank.
+plugin.bootstrap_package.settings.scss.grid-float-breakpoint = 9999
+plugin.tx_news {
+    view.twb {
+                templateRootPath = EXT:cammirata9/Resources/Private/Templates/Styles/Twb/Templates
+                partialRootPath = EXT:cammirata9/Resources/Private/Templates/Styles/Twb/Partials/
+                layoutRootPath = EXT:cammirata9/Resources/Private/Templates/Styles/Twb/Layouts/
+            }
 }
