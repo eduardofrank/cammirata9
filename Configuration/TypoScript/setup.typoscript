@@ -2,7 +2,8 @@
 #### DEPENDENCIES ####
 ######################
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/setup.typoscript">
-
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_news/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_news/Configuration/TSconfig/Page.tsconfig">
 
 ##############
 #### PAGE ####
@@ -53,63 +54,6 @@ module.tx_form.settings.yamlConfigurations.100 = EXT:cammirata9/Configuration/Fo
 lib.sm-logo = TEXT
 lib.sm-logo.value = typo3conf/ext/cammirata9/Resources/Public/Images/logo.svg
 
-#### GRID ELEMENTS ####
-lib.gridelements.defaultGridSetup {
-    columns {
-        default {
-            renderObj = COA
-            renderObj {
-                20 =< tt_content
-            }
-        }
-    }
-}
-plugin.tx_gridelements_pi1 >
-tt_content.gridelements_pi1 >
-tt_content.gridelements_pi1 = FLUIDTEMPLATE
-tt_content.gridelements_pi1 {
-
-    templateName = 3col
-    templateRootPaths {
-        0 = EXT:bootstrap_package/Resources/Private/Templates/ContentElements/
-        10 = EXT:cammirata9/Resources/Private/Templates/ContentElements/
-    }
-    partialRootPaths {
-        0 = EXT:bootstrap_package/Resources/Private/Partials/ContentElements/
-        10 = EXT:cammirata9/Resources/Private/Partials/ContentElements/
-    }
-    layoutRootPaths {
-        0 = EXT:bootstrap_package/Resources/Private/Layouts/ContentElements/
-        10 = EXT:cammirata9/Resources/Private/Layouts/ContentElements/
-    }
-
-    variables {
-        content = USER
-        content {
-            userFunc = GridElementsTeam\Gridelements\Plugin\Gridelements->main
-            setup {
-                default < lib.gridelements.defaultGridSetup
-            }
-        }
-    }
-}
-tt_content.gridelements_view < tt_content.gridelements_pi1
-
-tt_content.gridelements_pi1.variables.content.setup {
-    1 < lib.gridelements.defaultGridSetup
-    1 {
-        columns {
-            10 < .default
-            10.wrap = <div class="col-md-4">|</div>
-            20 < .default
-            20.wrap = <div class="col-md-4">|</div>
-            30 < .default
-            30.wrap = <div class="col-md-4">|</div>
-        }
-    }
-}
-
-
 
 page {
     10 = FLUIDTEMPLATE
@@ -142,3 +86,162 @@ page {
         }
     }
 }
+
+plugin.tx_seo.config {
+  xmlSitemap {
+    sitemaps {
+      projects {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 31
+          recursive = 2
+          url {
+            pageId = 9
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      women {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 28
+          recursive = 2
+          url {
+            pageId = 14
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      men {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 29
+          recursive = 2
+          url {
+            pageId = 16
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      editorial {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 30
+          recursive = 2
+          url {
+            pageId = 18
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      blog {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 34
+          recursive = 2
+          url {
+            pageId = 21
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      exhibitions {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 32
+          recursive = 2
+          url {
+            pageId = 33
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#### REDIRECTION FOR DETAIL PAGES WHEN CALLED ALONE ###
+[globalVar = TSFE:id=9]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,4,404
+[global]
+
+[globalVar = TSFE:id=14]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,12,404
+[global]
+
+[globalVar = TSFE:id=16]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,15,404
+[global]
+
+[globalVar = TSFE:id=18]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,17,404
+[global]
+
+[globalVar = TSFE:id=21]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,7,404
+[global]
+
+[globalVar = TSFE:id=33]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,27,404
+[global]

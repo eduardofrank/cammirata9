@@ -1,3 +1,13 @@
+body, .body-bg {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main-section {
+  flex:1;
+}
+
 p, h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, li, li a {
   font-family: "Josefin Sans", sans serif;
 }
@@ -14,6 +24,14 @@ a:hover {
     padding-left:20px;
     padding-right:20px;
 }*/
+
+@media (max-width: 765.9px) {
+.frame {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+}
 
 /**********************/
 /***     NAVBAR     ***/
@@ -167,7 +185,7 @@ ul.nav navbar-nav navbar-main li.active {
 @media (min-width:992px) and (max-width:1199.9px) {
 .navbar-mainnavigation .navbar-brand-image img {
     position: relative;
-    top: 25%;
+    top: 48%;
     transform: translate(0, -50%);
     width: 250px;
     max-height: 126px;
@@ -177,7 +195,7 @@ ul.nav navbar-nav navbar-main li.active {
 @media (min-width:768px) and (max-width:991.9px) {
 .navbar-mainnavigation .navbar-brand-image img {
     position: relative;
-    top: 36%;
+    top: 68%;
     transform: translate(0, -50%);
     width: 250px;
     max-height: 126px;
@@ -187,17 +205,7 @@ ul.nav navbar-nav navbar-main li.active {
 @media (min-width:540px) and (max-width:767.9px) {
 .navbar-mainnavigation .navbar-brand-image img {
     position: relative;
-    top: 63%;
-    transform: translate(0, -50%);
-    width: 250px;
-    max-height: 126px;
-}
-}
-
-@media (max-width: 539.9px) {
-.navbar-mainnavigation .navbar-brand-image img {
-    position: relative;
-    top: 63%;
+    top: 120%;
     transform: translate(0, -50%);
     width: 250px;
     max-height: 126px;
@@ -205,7 +213,22 @@ ul.nav navbar-nav navbar-main li.active {
 .navbar-default .navbar-toggler {
     position: relative;
     top: 13px;
-    margin-right: 15px;
+    /*margin-right: 15px;*/
+}
+}
+
+@media (max-width: 539.9px) {
+.navbar-mainnavigation .navbar-brand-image img {
+    position: relative;
+    top: 120%;
+    transform: translate(0, -50%);
+    width: 250px;
+    max-height: 126px;
+}
+.navbar-default .navbar-toggler {
+    position: relative;
+    top: 13px;
+    /*margin-right: 15px;*/
 }
 .navbar-mainnavigation .navbar-brand-image {
     position: relative;
@@ -586,6 +609,13 @@ ul.nav {
     background-color: transparent;
 }
 
+@media (max-width: 765.9px) {
+.breadcrumb-section {
+    background-color: transparent;
+    margin-top: 70px;
+}
+}
+
 .breadcrumb {
     display: flex;
     flex-wrap: wrap;
@@ -594,6 +624,10 @@ ul.nav {
     list-style: none;
     background-color: transparent;
     justify-content: flex-end;
+}
+
+#p13 .breadcrumb {
+    display:none;
 }
 
 /** END OF BREADCRUMB MENU  **/
@@ -653,6 +687,7 @@ ul.nav {
 
 #p4 .lead,
 #p6 .lead,
+#p27 .lead,
 #p28 .lead {
   display:none;
 }
@@ -699,6 +734,7 @@ ul.nav {
     border-style: none;
     width:100%;
     /*object-fit: contain;*/
+    height:100%;
 }
 
 /*** 1200px and up ***/
@@ -977,6 +1013,9 @@ ul.nav {
 /***     FOOTER     ***/
 /**********************/
 
+footer {
+    margin-top:auto;
+}
 .footer-section-content {
     padding:0;
     color: #fff;
@@ -1032,3 +1071,18 @@ footer .frame {
     color:#f7f2f6;
 }
 /**  END OF FOOTER   **/
+
+@media (min-width: 1200px) {
+.textpic-gallery {
+    padding: 0;
+    flex: 0 0 30.5%;
+}
+}
+
+@media (min-width: 1200px) {
+.textpic-text {
+    padding: 0;
+    flex: 0 0 67%;
+}
+}
+
